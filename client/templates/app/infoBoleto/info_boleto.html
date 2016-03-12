@@ -1,0 +1,78 @@
+<template name="infoBoleto">
+    {{#with qrCode}}
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Ticket Info</h3>
+            </div>
+            <div class="panel-body">
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <div class="row-action-primary">
+                            <i class="mdi-social-person"></i>
+                        </div>
+                        <div class="row-content">
+                            <div class="action-secondary"><i class="mdi-material-info"></i></div>
+                            <p class="list-group-item-text">Name</p>
+                            <h4 class="list-group-item-heading">{{nombre}}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <div class="row-action-primary">
+                            <i class="mdi-content-mail"></i>
+                        </div>
+                        <div class="row-content">
+                            <div class="action-secondary"><i class="mdi-material-info"></i></div>
+                            <p class="list-group-item-text">E-mail</p>
+                            <h4 class="list-group-item-heading">{{email}}</h4>
+                            {{updateCheck}}
+                        </div>
+                    </div>
+                </div>
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <div class="row-action-primary">
+                            <i class="mdi-maps-local-attraction"></i>
+                        </div>
+                        <div class="row-content">
+                            <div class="action-secondary"><i class="mdi-material-info"></i></div>
+                            <p class="list-group-item-text">Ticket Type</p>
+                            <h4 class="list-group-item-heading">{{ticketType}}</h4>
+                        </div>
+                    </div>
+                </div>
+
+                {{#if checkIn}}
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="row-action-primary">
+                                <i class="mdi-image-timer"></i>
+                            </div>
+                            <div class="row-content">
+                                <p class="list-group-item-text">Check In Time</p>
+                                <h4 class="list-group-item-heading">{{convertirTiempo horaChecado}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                {{/if}}
+                {{#if kitEntregado}}
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="row-action-primary">
+                                <i class="mdi-image-timer"></i>
+                            </div>
+                            <div class="row-content">
+                                <p class="list-group-item-text">Delivered Kit</p>
+                                <h4 class="list-group-item-heading">{{convertirTiempo kitHora}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                {{/if}}
+                {{#unless kitEntregado}}
+                    <button class="btn btn-success" id="entregar_kit">Deliver Kit</button>{{/unless}}
+
+            </div>
+        </div>
+    {{/with}}
+</template>

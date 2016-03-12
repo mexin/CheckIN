@@ -1,0 +1,60 @@
+<template name="demo">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h1 class="center">Demo Help</h1>
+
+            <p>All the Data was seeded for demonstration purposes, no real data was stored.</p>
+            <p>This app is used for checking ticket purchases that where sent as a QR Code by email to a given customer,
+                If the QR Code exists data referring to the ticket will be displayed.</p>
+            <p>All the data is inserted by a .csv file that cotains the exported ticket information. (Not available on
+                the demo for security reasons is disabled)</p>
+            <p>For obvious reasons you need a camera to use the QR Reader.</p>
+
+            <p class="">Designed & Developed by Luis Mexin </p>
+            <a class="btn btn-raised btn-material-blue" href="http://www.luismexin.me" target="_blank">luismexin.me</a>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="jumbotron center">
+            <h1>QR Codes for Testing</h1>
+            <p>Here's some QR Codes so you can take a picture of them using you mobile phone, and then used them
+                to see how the app works.</p>
+        </div>
+        {{#each demoData}}
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Demo Data</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="list-group col-md-6">
+                        <div class="list-group-item">
+                            <div class="row-action-primary">
+                                <i class="mdi-maps-local-attraction"></i>
+                            </div>
+                            <div class="row-content">
+                                <div class="action-secondary"><i class="mdi-material-info"></i></div>
+                                <p class="list-group-item-text">Ticket #</p>
+                                <h4 class="list-group-item-heading">{{ticketId}}</h4>
+                                {{> QrCode text = ticketId }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="list-group col-md-6">
+                        <div class="list-group-item">
+                            <div class="row-action-primary">
+                                <i class="mdi-social-person"></i>
+                            </div>
+                            <div class="row-content">
+                                <div class="action-secondary"><i class="mdi-material-info"></i></div>
+                                <p class="list-group-item-text">Name</p>
+                                <h4 class="list-group-item-heading">{{nombre}}</h4>
+                                <p class="list-group-item-text">E-mail</p>
+                                <h4 class="list-group-item-heading">{{email}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</template>

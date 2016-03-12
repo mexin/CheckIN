@@ -1,0 +1,56 @@
+<template name="header">
+    <nav class="navbar navbar-material-pink navbar-fixed-top" role="navigation">
+        <div class="navbar-header nav-black">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="" data-toggle="modal" data-target="#about-dialog">
+                <p>
+                    <!--<img src="img/rad.png" alt="" style="width:32px;"> -->
+                    <b> CheckIN</b> v1
+                </p>
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="navigation">
+            <ul class="nav navbar-nav">
+                <li><a href="{{pathFor 'demo'}}">Demo Help</a></li>
+                <li><a href="{{pathFor 'main'}}">Check In</a></li>
+                <li><a href="{{pathFor 'dashboard'}}">Dashboard</a></li>
+                <li><a href="{{pathFor 'importDb'}}">Import DB</a></li>
+            </ul>
+
+            <form class="navbar-form navbar-right">
+                {{> esInput class="form-control col-lg-8" index="boletos" placeholder="Search..." }}
+            </form>
+
+        </div>
+    </nav>
+
+    <div id="about-dialog" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">About...</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <!--<img src="img/crd-logo.png" alt="" style="margin: 10px 0 0 0">-->
+                    <h3>CheckIN</h3>
+                    <h3>Verify QR Codes within the imported database</h3>
+                    <p>Use Case:</p>
+                    <p>5K Race Running Kits Delivery, Validate QR to see if user purhase running kit, Mark as delivered,
+                        Avoid scammers, Report on kits delivered and check in from customers.</p>
+                    <p>
+                        Designed & Developed by: Luis Mexin (luismexin.me)
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,119 @@
+<template name="main">
+    <div class="content">
+        <div class="col-md-6">
+            <div class="jumbotron">
+                {{> qrScanner}}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="list-group list-heading">
+                        <div class="list-group-item">
+                            <div class="row-action-primary">
+                                <i class="mdi-maps-local-attraction"></i>
+                            </div>
+                            <div class="row-content">
+                                <div class="action-secondary"><i class="mdi-material-info"></i></div>
+                                <p class="list-group-item-text">Ticket #</p>
+                                <h1 class="list-group-item-heading">{{ticketIdScan}}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{> infoBoleto}}
+        </div>
+        <div class="col-md-12">
+            {{#esEach index="boletos"}}
+                <div class="panel {{#if checkIn}} panel-warning {{/if}}panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Search Info</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="list-group col-md-6">
+                            <div class="list-group-item">
+                                <div class="row-action-primary">
+                                    <i class="mdi-maps-local-attraction"></i>
+                                </div>
+                                <div class="row-content">
+                                    <div class="action-secondary"><i class="mdi-material-info"></i></div>
+                                    <p class="list-group-item-text">Ticket #</p>
+                                    <h4 class="list-group-item-heading">{{ticketId}}</h4>
+                                    <p class="list-group-item-text">Ticket Type</p>
+                                    <h4 class="list-group-item-heading">{{ticketType}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-group col-md-6">
+                            <div class="list-group-item">
+                                <div class="row-action-primary">
+                                    <i class="mdi-social-person"></i>
+                                </div>
+                                <div class="row-content">
+                                    <div class="action-secondary"><i class="mdi-material-info"></i></div>
+                                    <p class="list-group-item-text">Name</p>
+                                    <h4 class="list-group-item-heading">{{nombre}}</h4>
+                                    <p class="list-group-item-text">E-mail</p>
+                                    <h4 class="list-group-item-heading">{{email}}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        {{#if checkIn}}
+                            <div class="list-group col-md-6">
+                                <div class="list-group-item">
+                                    <div class="row-action-primary">
+                                        <i class="mdi-image-timer"></i>
+                                    </div>
+                                    <div class="row-content">
+
+                                        <p class="list-group-item-text">Check In Time</p>
+                                        <h4 class="list-group-item-heading">{{convertirTiempo horaChecado}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/if}}
+                        {{#if kitEntregado}}
+                            <div class="list-group col-md-6">
+                                <div class="list-group-item">
+                                    <div class="row-action-primary">
+                                        <i class="mdi-image-timer"></i>
+                                    </div>
+                                    <div class="row-content">
+
+                                        <p class="list-group-item-text">Delivered Kit</p>
+                                        <h4 class="list-group-item-heading">{{convertirTiempo kitHora}}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/if}}
+                        <div class="col-md-12">
+                            {{#unless checkIn}}
+                                <button class="btn btn-success" id="checkIn">Check In</button>
+                            {{/unless}}
+                            {{#if checkIn}}
+                                <button class="btn btn-warning" id="quitar_checkIn">Un-Check In</button>
+                            {{/if}}
+                            {{#unless kitEntregado}}
+                                <button class="btn btn-success" id="entregar_kit">Give Kit</button>
+                            {{/unless}}
+                            {{#if kitEntregado}}
+                                <button class="btn btn-warning" id="regresar_kit">Return Kit</button>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            {{/esEach}}
+
+            {{> esLoadMoreButton class="btn btn-success" index="boletos"}}
+
+            {{#ifEsHasNoResults index="boletos"}}
+                <div class="alert alert-dismissable alert-danger">There's no results!</div>
+            {{/ifEsHasNoResults}}
+
+            {{#ifEsIsSearching index="boletos"}}
+                <div>Searching...</div>
+            {{/ifEsIsSearching}}
+        </div>
+    </div>
+</template>
